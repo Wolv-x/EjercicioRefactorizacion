@@ -213,7 +213,7 @@ public class FrmEvento extends javax.swing.JFrame {
                     tematicaEvento, //Corregido
                     "corregir",
                     "Corregir",
-                    "String.valueOf(eventoNuevo.getPrecio())",
+                    String.valueOf(eventoNuevo.getPrecio()),
                     String.valueOf(ninos * 12),
                     String.valueOf(adultos * 25)};
             modelo.addRow(fila);

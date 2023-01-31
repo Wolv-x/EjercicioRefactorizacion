@@ -20,5 +20,27 @@ public class Cliente {
         this.contactoCliente = contactoCliente;
     }
 
+    public String getApellidoCliente() {
+        return apellidoCliente;
+    }
 
+    public void setApellidoCliente(String apellidoCliente) {
+        this.apellidoCliente = apellidoCliente;
+    }
+
+    public String getNombrecliente() {
+        return nombrecliente;
+    }
+
+    public void setNombrecliente(String nombrecliente) {
+        this.nombrecliente = nombrecliente;
+    }
+
+    public int getContactoCliente() {
+        return contactoCliente;
+    }
+
+    public void setContactoCliente(int contactoCliente) {
+        this.contactoCliente = contactoCliente;
+    }
 }

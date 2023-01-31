@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package poo.iccr.Evento;
-
 
 public class Salon {
 
     private String tipoSalon;
     private double valorSalon;
     private int numeroDeAsistentes;
-
-
 
     public Salon(Evento eventoNuevo) {
         this.numeroDeAsistentes = eventoNuevo.getAsistentesTotales();
