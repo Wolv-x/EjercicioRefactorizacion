@@ -5,11 +5,14 @@
 package poo.Evento.gui;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import poo.iccr.Evento.Evento;
+import poo.iccr.Evento.Salon;
 
 public class FrmEvento extends javax.swing.JFrame {
 
@@ -149,7 +152,7 @@ public class FrmEvento extends javax.swing.JFrame {
 
         try {
             String responsable = txtResponsable.getText();
-            int niños = Integer.parseInt(txtNiños.getText());
+            int ninos = Integer.parseInt(txtNiños.getText());
             int adultos = Integer.parseInt(txtAdultos.getText());
             String nombreCliente = txtNombre.getText().toUpperCase();
             String apellidoCliente = txtApellido.getText().toUpperCase();
@@ -157,40 +160,37 @@ public class FrmEvento extends javax.swing.JFrame {
             String tipoEvento;
             String tematicaEvento;
 
-            ArrayList<String> servicioSeleccionado = new ArrayList<String>();
-        //Completar obtención numero de elementos seleccionados
-            /*public int numeroServicios(){
+            ArrayList<String> servicioSeleccionados = new ArrayList<String>();
 
-                return ;
-            }*/
-
-            if (btngTipoEvento.getSelection().equals(rbtDiurno)) {
-                tipoEvento = "Diurno";
-            } else {
-                tipoEvento = "Nocturno";
-            }
-            if (btngTematica.getSelection().equals(rbtFormal)) {
-                tematicaEvento = "Formal";
-            } else {
-                tematicaEvento = "Informal";
+            if (rbtFormal.isSelected()) {
+                tipoEvento="Formal";
+            }else {
+                tipoEvento="Informal";
             }
 
-            eventoNuevo = new Evento(responsable, niños, adultos, tipoEvento, tematicaEvento);
+
+            if (rbtDiurno.isSelected()) {
+                tematicaEvento = "Diurno";
+            }else{
+                tematicaEvento = "Nocturno";
+            }
+
+            eventoNuevo = new Evento(responsable, ninos, adultos, tematicaEvento, tipoEvento);
 
             if (chkAnimacion.isSelected()) {
-                servicioSeleccionado.add(chkAnimacion.getText());
+                servicioSeleccionados.add(chkAnimacion.getText());
             }
 
             if (chkCocteleria.isSelected()) {
-                servicioSeleccionado.add(chkCocteleria.getText());
+                servicioSeleccionados.add(chkCocteleria.getText());
             }
 
             if (chkEquipoSonido.isSelected()) {
-                servicioSeleccionado.add(chkEquipoSonido.getText());
+                servicioSeleccionados.add(chkEquipoSonido.getText());
             }
 
             if (chkMenajePremium.isSelected()) {
-                servicioSeleccionado.add(chkMenajePremium.getText());
+                servicioSeleccionados.add(chkMenajePremium.getText());
             }
 
             if (eventoNuevo.getAsistentesTotales() < 15 || eventoNuevo.getAsistentesTotales() > 60) {
@@ -200,17 +200,31 @@ public class FrmEvento extends javax.swing.JFrame {
             txtResultado.append("\n" + eventoNuevo.toString());
             DefaultTableModel modelo = (DefaultTableModel) tblDatos.getModel();
 
-            String[] fila = {responsable, String.valueOf(niños + adultos), apellidoCliente + " " + nombreCliente, String.valueOf(contacto), eventoNuevo.getTipoEvento(), tematicaEvento, eventoNuevo.presentarServicios(), tipoEvento, String.valueOf(eventoNuevo.getPrecio()), String.valueOf(niños * 12), String.valueOf(adultos * 25)};
+/*
+            List<String> filtered = servicioSeleccionados.stream()
+                    .map(servicioSeleccionados.indexOf()::get)
+                    .collect(Collectors.toList());
+*/
+            String[] fila = {responsable,
+                    Integer.toString(eventoNuevo.getAsistentesTotales()),
+                    apellidoCliente + " " + nombreCliente,
+                    String.valueOf(contacto),
+                    tipoEvento, //Corregido
+                    tematicaEvento, //Corregido
+                    "corregir",
+                    "Corregir",
+                    "String.valueOf(eventoNuevo.getPrecio())",
+                    String.valueOf(ninos * 12),
+                    String.valueOf(adultos * 25)};
             modelo.addRow(fila);
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Debe ingresar numeros " + "en el numero de asistentes y contacto; y letras en el" + " el nombre del cliente y responsable.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "El numero de asistentes debe ser  " + "mayor a 15 y menor a 60." + "Intentalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-
         return null;
     }//GEN-LAST:event_btnGuardarActionPerformed
+
 
     /**
      * @param args the command line arguments

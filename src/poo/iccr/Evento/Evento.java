@@ -1,5 +1,4 @@
 package poo.iccr.Evento;
-import poo.Evento.gui.FrmEvento;
 
 import java.util.ArrayList;
 
@@ -52,18 +51,32 @@ public class Evento {
         this.numeroAdultos = numeroAdultos;
     }
 
+    public void setTematica(String tematica) {
+        this.tematica = tematica;
+    }
+
+
     public ArrayList<String> getServicios() {
         return servicios;
+    }
+
+    public void setServicios(ArrayList<String> servicios) {
+        this.servicios = servicios;
     }
 
     public void setServicios(String servicioNuevo) {
         this.servicios.add(servicioNuevo);
     }
 
+    public String getTematica() {
+        return tematica;
+    }
+    
+
     public String presentarServicios() {
         String serviciosDelEvento = "";
         
-        for (String auxiliarForeachServicios : this.servicios) {
+        for (String auxiliarForeachServicios : servicios) {
             if (auxiliarForeachServicios != null) {
                 serviciosDelEvento += auxiliarForeachServicios + " - ";
             }
