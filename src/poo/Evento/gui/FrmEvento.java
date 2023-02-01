@@ -5,11 +5,10 @@
 package poo.Evento.gui;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import poo.iccr.Evento.Cliente;
 
 import poo.iccr.Evento.Evento;
 import poo.iccr.Evento.Salon;
@@ -159,6 +158,8 @@ public class FrmEvento extends javax.swing.JFrame {
             int contacto = Integer.parseInt(txtContactoCliente.getText());
             String tipoEvento;
             String tematicaEvento;
+            Cliente cliente = new Cliente(nombreCliente, apellidoCliente, contacto);
+            
 
             ArrayList<String> servicioSeleccionados = new ArrayList<String>();
 
@@ -175,7 +176,7 @@ public class FrmEvento extends javax.swing.JFrame {
             }
 
             eventoNuevo = new Evento(responsable, ninos, adultos, tematicaEvento, tipoEvento);
-
+            eventoNuevo.setCliente(cliente);
             if (chkAnimacion.isSelected()) {
                 servicioSeleccionados.add(chkAnimacion.getText());
             }
@@ -195,7 +196,7 @@ public class FrmEvento extends javax.swing.JFrame {
             if (eventoNuevo.getAsistentesTotales() < 15 || eventoNuevo.getAsistentesTotales() > 60) {
                 throw new Exception("Numero incorrecto de asistentes");
             }
-
+            eventoNuevo.setServicios(servicioSeleccionados);
             txtResultado.append("\n" + eventoNuevo.toString());
             DefaultTableModel modelo = (DefaultTableModel) tblDatos.getModel();
 
@@ -205,6 +206,7 @@ public class FrmEvento extends javax.swing.JFrame {
                     .collect(Collectors.toList());
 */
             Salon salon = new Salon(eventoNuevo);
+            eventoNuevo.setSalon(salon);
             String[] fila = {responsable,
                     Integer.toString(eventoNuevo.getAsistentesTotales()),
                     apellidoCliente + " " + nombreCliente,
@@ -213,7 +215,7 @@ public class FrmEvento extends javax.swing.JFrame {
                     tematicaEvento,
                     servicioSeleccionados.toString(),
                     salon.getTipoSalon(),
-                    "12.5"/*String.valueOf(eventoNuevo.getPrecio())*/,
+                    Double.toString(eventoNuevo.getPrecio()),
                     String.valueOf(ninos * 12),
                     String.valueOf(adultos * 25)};
             modelo.addRow(fila);
