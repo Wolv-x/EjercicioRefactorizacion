@@ -148,7 +148,7 @@ public class FrmEvento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private Object btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         try {
             String responsable = txtResponsable.getText();
@@ -167,7 +167,6 @@ public class FrmEvento extends javax.swing.JFrame {
             }else {
                 tipoEvento="Informal";
             }
-
 
             if (rbtDiurno.isSelected()) {
                 tematicaEvento = "Diurno";
@@ -205,6 +204,7 @@ public class FrmEvento extends javax.swing.JFrame {
                     .map(servicioSeleccionados.indexOf()::get)
                     .collect(Collectors.toList());
 */
+            Salon salon;
             String[] fila = {responsable,
                     Integer.toString(eventoNuevo.getAsistentesTotales()),
                     apellidoCliente + " " + nombreCliente,
@@ -222,9 +222,8 @@ public class FrmEvento extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "El numero de asistentes debe ser  " + "mayor a 15 y menor a 60." + "Intentalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        return null;
-    }//GEN-LAST:event_btnGuardarActionPerformed
 
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -10,7 +10,7 @@ public class Evento {
     private int numeroAdultos;
     private double precioEvento;
     private String tematica;
-    private ArrayList <String> servicios = new ArrayList<String>();
+    private ArrayList<String> servicios = new ArrayList<String>();
     private double precioComida;
     private int asistentesTotales;
 
@@ -20,16 +20,8 @@ public class Evento {
         this.numeroNinos = numeroNinos;
         this.numeroAdultos = numeroAdultos;
         this.tematica = tematica;
-        this.tipoEvento=tipoEvento;
+        this.tipoEvento = tipoEvento;
         setAsistentesTotales();
-    }
-
-    public String getNombreResponsable() {
-        return nombreResponsable;
-    }
-
-    public void setNombreResponsable(String nombreResponsable) {
-        this.nombreResponsable = nombreResponsable;
     }
 
     public String getTipoEvento() {
@@ -47,6 +39,7 @@ public class Evento {
     public int getNumeroNinos() {
         return numeroNinos;
     }
+
     public void setNumeroAdultos(int numeroAdultos) {
         this.numeroAdultos = numeroAdultos;
     }
@@ -71,11 +64,11 @@ public class Evento {
     public String getTematica() {
         return tematica;
     }
-    
+
 
     public String presentarServicios() {
         String serviciosDelEvento = "";
-        
+
         for (String auxiliarForeachServicios : servicios) {
             if (auxiliarForeachServicios != null) {
                 serviciosDelEvento += auxiliarForeachServicios + " - ";
@@ -99,18 +92,19 @@ public class Evento {
     public void Comida() {
         this.precioComida = 12 * this.numeroNinos + 25 * this.numeroAdultos;
     }
-Salon salon;
+
+    Salon salon;
 
     public void calculaPrecio() {
-        this.precioEvento = 150 + salon.getValorSalon() + numeroServicios() * 4.5
-                + this.precioComida;
+        this.precioEvento = 150 + salon.getValorSalon() + numeroServicios() * 4.5 + this.precioComida;
     }
 
     public int getAsistentesTotales() {
         return asistentesTotales;
     }
+
     public void setAsistentesTotales() {
-        this.asistentesTotales = this.numeroNinos+this.numeroAdultos;
+        this.asistentesTotales = this.numeroNinos + this.numeroAdultos;
     }
 
     /*
