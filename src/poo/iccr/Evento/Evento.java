@@ -23,7 +23,6 @@ public class Evento {
         this.numeroAdultos = numeroAdultos;
         this.tematica = tematica;
         this.tipoEvento = tipoEvento;
-        salon = new Salon(this);
         setAsistentesTotales();
     }
 
@@ -97,7 +96,7 @@ public class Evento {
         this.asistentesTotales = this.numeroNinos + this.numeroAdultos;
     }
 
-    
+   /*
     @Override
     public String toString() {
         return "Evento{" + "responsable=" + this.nombreResponsable + ", tipoEvento=" + this.tipoEvento
@@ -107,5 +106,5 @@ public class Evento {
                 + this.cliente.getNombrecliente() + ", contactoCliente=" + this.cliente.getContactoCliente()
                 + ", servicios=" + this.servicios.toString() + ", numeroServicios=" + this.servicios.size()
                 + ", precioComida=" + this.precioComida + '}';
-    }
+    }*/
 }
