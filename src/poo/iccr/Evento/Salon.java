@@ -8,13 +8,15 @@ public class Salon {
 
     public Salon(Evento eventoNuevo) {
         this.numeroDeAsistentes = eventoNuevo.getAsistentesTotales();
+        asignarSalon();
+        setValorSalon();
     }
 
     public double getValorSalon() {
         return this.valorSalon;
     }
 
-    public void setValorSalon(double valorSalon) {
+    public void setValorSalon() {
         if (this.tipoSalon.equals("Platino")) {
             this.valorSalon = 350;                     
         }
@@ -26,7 +28,7 @@ public class Salon {
         }
     }
 
-    public void salonAsignado() {
+    public void asignarSalon() {
         if (this.numeroDeAsistentes >= 15 && this.numeroDeAsistentes <= 25) {
             this.tipoSalon = "Platino";
         }
@@ -37,5 +39,11 @@ public class Salon {
             this.tipoSalon = "Diamante";
         }
     }
+
+    public String getTipoSalon() {
+        return tipoSalon;
+    }
+    
+    
 
 }

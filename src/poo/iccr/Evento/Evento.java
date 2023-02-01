@@ -13,6 +13,8 @@ public class Evento {
     private ArrayList<String> servicios = new ArrayList<String>();
     private double precioComida;
     private int asistentesTotales;
+    private Salon salon;
+    private Cliente cliente;
 
 
     public Evento(String nombreResponsable, int numeroNinos, int numeroAdultos, String tematica, String tipoEvento) {
@@ -21,6 +23,7 @@ public class Evento {
         this.numeroAdultos = numeroAdultos;
         this.tematica = tematica;
         this.tipoEvento = tipoEvento;
+        salon = new Salon(this);
         setAsistentesTotales();
     }
 
@@ -66,17 +69,6 @@ public class Evento {
     }
 
 
-    public String presentarServicios() {
-        String serviciosDelEvento = "";
-
-        for (String auxiliarForeachServicios : servicios) {
-            if (auxiliarForeachServicios != null) {
-                serviciosDelEvento += auxiliarForeachServicios + " - ";
-            }
-        }
-        return serviciosDelEvento;
-    }
-
     public int numeroServicios() {
         return this.servicios.size();
     }
@@ -92,10 +84,8 @@ public class Evento {
     public void Comida() {
         this.precioComida = 12 * this.numeroNinos + 25 * this.numeroAdultos;
     }
-
-    Salon salon;
-
-    public void calculaPrecio() {
+    
+    public void calcularPrecio() {
         this.precioEvento = 150 + salon.getValorSalon() + numeroServicios() * 4.5 + this.precioComida;
     }
 
@@ -107,16 +97,15 @@ public class Evento {
         this.asistentesTotales = this.numeroNinos + this.numeroAdultos;
     }
 
-    /*
+    
     @Override
     public String toString() {
         return "Evento{" + "responsable=" + this.nombreResponsable + ", tipoEvento=" + this.tipoEvento
                 + ", ni\u00f1os=" + this.numeroNinos + ", adultos=" + this.numeroAdultos + ", asistentesTotales="
                 + this.asistentesTotales + ", tematica=" + this.tematica + ", salon=" + this.salon
-                + ", valorSalon=" + this.valorSalon + ", precioEvento=" + this.precioEvento
-                + ", apellidoCliente=" + this.apellidoCliente + ", nombrecliente="
-                + this.nombrecliente + ", contactoCliente=" + this.contactoCliente
-                + ", servicios=" + this.presentarServicios() + ", numeroServicios=" + this.numeroServicios
+                + ", apellidoCliente=" + this.cliente.getApellidoCliente() + ", nombrecliente="
+                + this.cliente.getNombrecliente() + ", contactoCliente=" + this.cliente.getContactoCliente()
+                + ", servicios=" + this.servicios.toString() + ", numeroServicios=" + this.servicios.size()
                 + ", precioComida=" + this.precioComida + '}';
-    }*/
+    }
 }

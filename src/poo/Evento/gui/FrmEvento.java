@@ -204,15 +204,15 @@ public class FrmEvento extends javax.swing.JFrame {
                     .map(servicioSeleccionados.indexOf()::get)
                     .collect(Collectors.toList());
 */
-            Salon salon;
+            Salon salon = new Salon(eventoNuevo);
             String[] fila = {responsable,
                     Integer.toString(eventoNuevo.getAsistentesTotales()),
                     apellidoCliente + " " + nombreCliente,
                     String.valueOf(contacto),
                     tipoEvento, //Corregido
                     tematicaEvento, //Corregido
-                    "corregir",
-                    "Corregir",
+                    servicioSeleccionados.toString(),
+                    salon.getTipoSalon(),
                     String.valueOf(eventoNuevo.getPrecio()),
                     String.valueOf(ninos * 12),
                     String.valueOf(adultos * 25)};
@@ -220,7 +220,8 @@ public class FrmEvento extends javax.swing.JFrame {
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Debe ingresar numeros " + "en el numero de asistentes y contacto; y letras en el" + " el nombre del cliente y responsable.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "El numero de asistentes debe ser  " + "mayor a 15 y menor a 60." + "Intentalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "El numero de asistentes debe ser  " + "mayor a 15 y menor a 60." + "Intentalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, e);
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
